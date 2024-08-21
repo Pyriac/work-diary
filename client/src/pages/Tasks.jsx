@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Papa from "papaparse";
 import "../assets/styles/app.css";
 import Detail_tasks from "../components/Detail_Tasks";
@@ -42,7 +42,8 @@ export default function Tasks() {
     <>
       <div className="all_tasks">
         {sortedData.map((task) => (
-          <Detail_tasks
+          <Link
+            to={`/task/${task.ID}`}
             key={
               task.Tache +
               task.Duree_estimee +
@@ -52,8 +53,9 @@ export default function Tasks() {
                 day: "numeric",
               })
             }
-            data={task}
-          />
+          >
+            <Detail_tasks data={task} />
+          </Link>
         ))}
       </div>
     </>

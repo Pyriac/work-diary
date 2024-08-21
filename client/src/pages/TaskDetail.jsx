@@ -6,7 +6,7 @@ export default function TaskDetail() {
   const tasksFromLoader = useLoaderData();
   const { id } = useParams();
 
-  const [className, setClassName] = useState("big_card");
+  const [className, setClassName] = useState("task_detail");
   const [currentDate, setCurrentDate] = useState(null);
   const [deadlineDate, setDeadlineDate] = useState(null);
   const [data, setData] = useState([]);
@@ -21,7 +21,6 @@ export default function TaskDetail() {
     Papa.parse(tasksFromLoader, {
       header: true,
       complete: (result) => {
-        console.log("Parsed data:", result.data);
         setData(result.data);
       },
       error: (error) => console.error(error),
@@ -63,11 +62,11 @@ export default function TaskDetail() {
       const dureeEstimee = parseFloat(task.Duree_estimee);
 
       if (daysLeft < dureeEstimee) {
-        setClassName("big_card_red");
+        setClassName("task_detail_red");
       } else if (daysLeft - dureeEstimee < 2) {
-        setClassName("big_card_orange");
+        setClassName("task_detail_orange");
       } else {
-        setClassName("big_card");
+        setClassName("task_detail");
       }
     }
   }, [currentDate, deadlineDate, task.Duree_estimee]);

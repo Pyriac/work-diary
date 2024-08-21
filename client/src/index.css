@@ -261,6 +261,36 @@ h2 {
   color: aliceblue;
 }
 
+.task_detail {
+  width: 60vw;
+  text-align: center;
+  margin: 4rem;
+  border: 1px solid aliceblue;
+  color: aliceblue;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.task_detail_red {
+  width: 60vw;
+  text-align: center;
+  margin: 4rem;
+  border: 1px solid rgb(255, 79, 79);
+  color: rgb(255, 79, 79);
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.task_detail_orange {
+  width: 60vw;
+  text-align: center;
+  margin: 4rem;
+  border: 1px solid rgb(240, 155, 28);
+  color: rgb(240, 155, 28);
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
