@@ -18,7 +18,6 @@ export default function Tasks() {
     });
   }, [tasksFromLoader]);
 
-  console.info(data);
   return (
     <>
       <div className="all_tasks">

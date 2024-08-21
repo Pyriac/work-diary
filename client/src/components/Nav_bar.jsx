@@ -23,8 +23,6 @@ export default function Nav_bar() {
     setInterval(updateDate, 1000);
   }, []);
 
-  console.info("coucou");
-
   return (
     <div className="nav">
       <Link to="/">

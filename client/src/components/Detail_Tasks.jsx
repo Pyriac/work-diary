@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import "../assets/styles/app.css";
 
 export default function DetailTasks(data) {
-  console.info(data);
-
   const [currentDate, setCurrentDate] = useState(null);
   const [deadlineDate, setDeadlineDate] = useState(null);
   const [className, setClassName] = useState("big_card");
@@ -16,7 +14,7 @@ export default function DetailTasks(data) {
 
   const daysDifference = (date1, date2) => {
     const oneDay = 24 * 60 * 60 * 1000;
-    const diffDays = Math.round(Math.abs((date1 - date2) / oneDay));
+    const diffDays = Math.round((date1 - date2) / oneDay);
     return diffDays;
   };
 
@@ -35,6 +33,8 @@ export default function DetailTasks(data) {
     if (currentDate && deadlineDate !== null && data.data.Duree_estimee) {
       const daysLeft = daysDifference(deadlineDate, currentDate);
       const dureeEstimee = parseFloat(data.data.Duree_estimee);
+
+      console.info(daysLeft);
 
       if (daysLeft < dureeEstimee) {
         setClassName("big_card_red");
