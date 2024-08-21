@@ -22,6 +22,23 @@ function Home() {
     0
   );
 
+  const date_aujourdhui = new Date();
+
+  const jours_totaux = duree_totale + Math.floor(duree_totale / 3) * 4;
+
+  const date_dispo = new Date();
+  date_dispo
+    .setDate(date_aujourdhui.getDate() + jours_totaux)
+    .toLocaleString("fr-FR");
+
+  const date_formatee = date_dispo.toLocaleDateString("fr-FR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  console.info(date_dispo);
+
   return (
     <>
       {" "}
@@ -31,6 +48,8 @@ function Home() {
           Tu as {data.length} missions en cours pour un total de {duree_totale}{" "}
           jours.
         </h2>
+        <h2>Ta prochaine disponibilité sera la {date_formatee}.</h2>
+
         <p>
           Le lien pour éditer ton agenda :{" "}
           <a
