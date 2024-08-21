@@ -34,7 +34,6 @@ export default function Little_tasks(data) {
       const daysLeft = daysDifference(deadlineDate, currentDate);
       const dureeEstimee = parseFloat(data.data.Duree_estimee);
 
-      console.info(daysLeft);
       if (daysLeft < dureeEstimee || daysLeft < 0) {
         setClassName("card_red");
       } else if (daysLeft - dureeEstimee < 2) {

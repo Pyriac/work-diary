@@ -16,12 +16,15 @@ export default function DetailTasks(data) {
     setCurrentDate(new Date());
   }, []);
 
+  console.info(data.data.Deadline);
+
   useEffect(() => {
     if (currentDate && data.data.Deadline) {
       const deadlineData = data.data.Deadline;
       setDeadlineDate(deadlineData);
     }
   }, [currentDate, data.data.Deadline]);
+  console.info(deadlineDate);
 
   useEffect(() => {
     if (currentDate && deadlineDate !== null && data.data.Duree_estimee) {

@@ -37,8 +37,6 @@ function Home() {
     day: "numeric",
   });
 
-  console.info(date_dispo);
-
   return (
     <>
       {" "}
@@ -63,7 +61,7 @@ function Home() {
       <div className="grid-container">
         {data.map((task) => (
           <Link
-            to="tasks"
+            to={`/task/${task.ID}`}
             key={task.Tache + task.Duree_estimee + task.Deadline}
           >
             <Little_tasks data={task} />

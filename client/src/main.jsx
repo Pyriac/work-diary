@@ -9,6 +9,7 @@ import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
 import Tasks from "./pages/Tasks.jsx";
 import "./index.css";
+import TaskDetail from "./pages/TaskDetail.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,11 @@ const router = createBrowserRouter([
         loader: getTasks,
       },
       { path: "/tasks", element: <Tasks />, loader: getTasks },
+      {
+        path: "/task/:id",
+        element: <TaskDetail />,
+        loader: getTasks,
+      },
     ],
   },
 ]);
