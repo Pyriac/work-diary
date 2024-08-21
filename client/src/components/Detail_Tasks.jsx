@@ -6,12 +6,6 @@ export default function DetailTasks(data) {
   const [deadlineDate, setDeadlineDate] = useState(null);
   const [className, setClassName] = useState("big_card");
 
-  const parseDate = (dateStr) => {
-    const [day, month, year] = dateStr.split("/").map(Number);
-    const fullYear = year < 100 ? 2000 + year : year;
-    return new Date(fullYear, month - 1, day);
-  };
-
   const daysDifference = (date1, date2) => {
     const oneDay = 24 * 60 * 60 * 1000;
     const diffDays = Math.round((date1 - date2) / oneDay);
@@ -24,7 +18,7 @@ export default function DetailTasks(data) {
 
   useEffect(() => {
     if (currentDate && data.data.Deadline) {
-      const deadlineData = parseDate(data.data.Deadline);
+      const deadlineData = data.data.Deadline;
       setDeadlineDate(deadlineData);
     }
   }, [currentDate, data.data.Deadline]);
@@ -49,7 +43,16 @@ export default function DetailTasks(data) {
     <div className={className}>
       <h3 className="client_name">{data.data.Client}</h3>
       <h4 className="task_name">{data.data.Tache}</h4>
-      <p className="desc">{data.data.Description}</p>
+      {data.data.A_faire_a_court_terme ? (
+        <p className="fast_task">
+          <strong className="underline">à faire à court terme</strong> :{" "}
+          {data.data.A_faire_a_court_terme}
+        </p>
+      ) : null}
+      {data.data.Description ? (
+        <p className="desc">{data.data.Description}</p>
+      ) : null}
+
       <h4 className="duree">
         {data.data.Duree_estimee}{" "}
         {data.data.Duree_estimee === "1" ||
@@ -61,7 +64,14 @@ export default function DetailTasks(data) {
       </h4>
       <p className="deadline">
         {" "}
-        à faire avant le : <strong>{data.data.Deadline}</strong>
+        à faire avant le :{" "}
+        <strong>
+          {data.data.Deadline.toLocaleDateString("fr-FR", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </strong>
       </p>
     </div>
   );

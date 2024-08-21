@@ -18,12 +18,40 @@ export default function Tasks() {
     });
   }, [tasksFromLoader]);
 
+  console.info(data);
+
+  const dataDate = data.map((task) => {
+    const [day, month, year] = task.Deadline.split("/");
+    const fullYear = year.length === 2 ? `20${year}` : year;
+    const formattedDate = `${fullYear}-${month}-${day}`;
+    return {
+      ...task,
+      Deadline: new Date(Date.parse(formattedDate)),
+    };
+  });
+
+  console.info(dataDate);
+
+  const sortedData = dataDate.sort((a, b) => {
+    return a.Deadline - b.Deadline;
+  });
+
+  console.info(sortedData);
+
   return (
     <>
       <div className="all_tasks">
-        {data.map((task) => (
+        {sortedData.map((task) => (
           <Detail_tasks
-            key={task.Tache + task.Duree_estimee + task.Deadline}
+            key={
+              task.Tache +
+              task.Duree_estimee +
+              task.Deadline.toLocaleDateString("fr-FR", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+            }
             data={task}
           />
         ))}
