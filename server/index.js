@@ -1,4 +1,7 @@
-const express = require("express");
-const app = express();
+require("dotenv").config();
 
-app.listen(8000, () => console.info("le serveur tourne"));
+const port = process.env.APP_PORT;
+
+const app = require("./app/config");
+
+app.listen(port, () => console.info(`server listening on port ${port}`));
