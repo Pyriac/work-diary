@@ -18,8 +18,6 @@ export default function Tasks() {
     });
   }, [tasksFromLoader]);
 
-  console.info(data);
-
   const dataDate = data.map((task) => {
     const [day, month, year] = task.Deadline.split("/");
     const fullYear = year.length === 2 ? `20${year}` : year;

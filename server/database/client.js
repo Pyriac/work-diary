@@ -33,3 +33,5 @@ client.checkConnection = () => {
 client.databaseName = DB_NAME;
 
 // Ready to export
+
+module.exports = client;
