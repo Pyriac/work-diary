@@ -1,37 +1,13 @@
-import { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
-import Papa from "papaparse";
 import "../assets/styles/app.css";
 import Detail_tasks from "../components/Detail_Tasks";
 
 export default function Tasks() {
-  const tasksFromLoader = useLoaderData();
-  const [data, setData] = useState([]);
+  const data = useLoaderData();
+  console.info(data);
 
-  useEffect(() => {
-    Papa.parse(tasksFromLoader, {
-      header: true,
-      complete: (result) => {
-        setData(result.data);
-      },
-      error: (error) => console.error(error),
-    });
-  }, [tasksFromLoader]);
-
-  const dataDate = data.map((task) => {
-    const [day, month, year] = task.Deadline.split("/");
-    const fullYear = year.length === 2 ? `20${year}` : year;
-    const formattedDate = `${fullYear}-${month}-${day}`;
-    return {
-      ...task,
-      Deadline: new Date(Date.parse(formattedDate)),
-    };
-  });
-
-  console.info(dataDate);
-
-  const sortedData = dataDate.sort((a, b) => {
-    return a.Deadline - b.Deadline;
+  const sortedData = data.sort((a, b) => {
+    return a.deadline - b.deadline;
   });
 
   console.info(sortedData);
@@ -40,18 +16,7 @@ export default function Tasks() {
     <>
       <div className="all_tasks">
         {sortedData.map((task) => (
-          <Link
-            to={`/task/${task.ID}`}
-            key={
-              task.Tache +
-              task.Duree_estimee +
-              task.Deadline.toLocaleDateString("fr-FR", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })
-            }
-          >
+          <Link to={`/task/${task.id}`} key={task.id}>
             <Detail_tasks data={task} />
           </Link>
         ))}

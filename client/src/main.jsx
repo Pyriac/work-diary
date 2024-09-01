@@ -21,7 +21,7 @@ const router = createBrowserRouter([
         element: <Home />,
         loader: readAllTasks,
       },
-      { path: "/tasks", element: <Tasks /> },
+      { path: "/tasks", element: <Tasks />, loader: readAllTasks },
       {
         path: "/task/:id",
         element: <TaskDetail />,
