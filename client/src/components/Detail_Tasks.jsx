@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import "../assets/styles/app.css";
 
-export default function DetailTasks(data) {
+export default function DetailTasks({ data }) {
   const [currentDate, setCurrentDate] = useState(null);
   const [deadlineDate, setDeadlineDate] = useState(null);
   const [className, setClassName] = useState("big_card");
@@ -16,20 +17,20 @@ export default function DetailTasks(data) {
     setCurrentDate(new Date());
   }, []);
 
-  console.info(data.data.Deadline);
+  console.info(data.deadline);
 
   useEffect(() => {
-    if (currentDate && data.data.Deadline) {
-      const deadlineData = data.data.Deadline;
+    if (currentDate && data.deadline) {
+      const deadlineData = data.deadline;
       setDeadlineDate(deadlineData);
     }
-  }, [currentDate, data.data.Deadline]);
+  }, [currentDate, data.deadline]);
   console.info(deadlineDate);
 
   useEffect(() => {
-    if (currentDate && deadlineDate !== null && data.data.Duree_estimee) {
+    if (currentDate && deadlineDate !== null && data.estimated_day) {
       const daysLeft = daysDifference(deadlineDate, currentDate);
-      const dureeEstimee = parseFloat(data.data.Duree_estimee);
+      const dureeEstimee = parseFloat(data.estimated_day);
 
       console.info(daysLeft);
 
@@ -41,26 +42,24 @@ export default function DetailTasks(data) {
         setClassName("big_card");
       }
     }
-  }, [currentDate, deadlineDate, data.data.Duree_estimee]);
+  }, [currentDate, deadlineDate, data.estimated_day]);
   return (
     <div className={className}>
-      <h3 className="client_name">{data.data.Client}</h3>
-      <h4 className="task_name">{data.data.Tache}</h4>
-      {data.data.A_faire_a_court_terme ? (
+      <h3 className="client_name">{data.client}</h3>
+      <h4 className="task_name">{data.task}</h4>
+      {data.short_term ? (
         <p className="fast_task">
           <strong className="underline">à faire à court terme</strong> :{" "}
-          {data.data.A_faire_a_court_terme}
+          {data.short_term}
         </p>
       ) : null}
-      {data.data.Description ? (
-        <p className="desc">{data.data.Description}</p>
-      ) : null}
+      {data.description ? <p className="desc">{data.description}</p> : null}
 
       <h4 className="duree">
-        {data.data.Duree_estimee}{" "}
-        {data.data.Duree_estimee === "1" ||
-        data.data.Duree_estimee === "0.5" ||
-        data.data.Duree_estimee === "0,5"
+        {data.estimated_day}{" "}
+        {data.estimated_day === "1" ||
+        data.estimated_day === "0.5" ||
+        data.estimated_day === "0,5"
           ? "jour"
           : "jours"}{" "}
         de travail prévu
@@ -69,7 +68,7 @@ export default function DetailTasks(data) {
         {" "}
         à faire avant le :{" "}
         <strong>
-          {data.data.Deadline.toLocaleDateString("fr-FR", {
+          {new Date(data.deadline).toLocaleDateString("fr-FR", {
             year: "numeric",
             month: "long",
             day: "numeric",
@@ -79,3 +78,14 @@ export default function DetailTasks(data) {
     </div>
   );
 }
+
+DetailTasks.propTypes = {
+  data: PropTypes.shape({
+    client: PropTypes.string,
+    deadline: PropTypes.instanceOf(Date),
+    estimated_day: PropTypes.string,
+    task: PropTypes.string,
+    short_term: PropTypes.string,
+    description: PropTypes.string,
+  }),
+};
