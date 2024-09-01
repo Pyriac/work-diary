@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import getTasks from "./services/request.js";
+import readAllTasks from "./services/readAllTasks.js";
 
 import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
@@ -19,13 +19,12 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: getTasks,
+        loader: readAllTasks,
       },
-      { path: "/tasks", element: <Tasks />, loader: getTasks },
+      { path: "/tasks", element: <Tasks /> },
       {
         path: "/task/:id",
         element: <TaskDetail />,
-        loader: getTasks,
       },
     ],
   },
