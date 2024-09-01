@@ -17,22 +17,24 @@ export default function DetailTasks({ data }) {
     setCurrentDate(new Date());
   }, []);
 
-  console.info(data.deadline);
-
   useEffect(() => {
     if (currentDate && data.deadline) {
       const deadlineData = data.deadline;
       setDeadlineDate(deadlineData);
     }
   }, [currentDate, data.deadline]);
+
   console.info(deadlineDate);
+  console.info(currentDate);
+  console.info(data.estimated_day);
 
   useEffect(() => {
     if (currentDate && deadlineDate !== null && data.estimated_day) {
-      const daysLeft = daysDifference(deadlineDate, currentDate);
+      const daysLeft = daysDifference(new Date(deadlineDate), currentDate);
       const dureeEstimee = parseFloat(data.estimated_day);
 
       console.info(daysLeft);
+      console.info(dureeEstimee);
 
       if (daysLeft < dureeEstimee) {
         setClassName("big_card_red");

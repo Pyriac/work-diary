@@ -7,7 +7,7 @@ export default function Tasks() {
   console.info(data);
 
   const sortedData = data.sort((a, b) => {
-    return a.deadline - b.deadline;
+    return new Date(a.deadline) - new Date(b.deadline);
   });
 
   console.info(sortedData);
