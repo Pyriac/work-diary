@@ -4,14 +4,7 @@ import PropTypes from "prop-types";
 
 export default function Little_tasks({ data }) {
   const [currentDate, setCurrentDate] = useState(null);
-  const [deadlineDate, setDeadlineDate] = useState(null);
   const [littleClassName, setClassName] = useState("card");
-
-  const parseDate = (dateStr) => {
-    const [day, month, year] = dateStr.split("/").map(Number);
-    const fullYear = year < 100 ? 2000 + year : year;
-    return new Date(fullYear, month - 1, day);
-  };
 
   const daysDifference = (date1, date2) => {
     const oneDay = 24 * 60 * 60 * 1000;
@@ -24,15 +17,8 @@ export default function Little_tasks({ data }) {
   }, []);
 
   useEffect(() => {
-    if (currentDate && data.deadline) {
-      const deadlineData = parseDate(data.deadline);
-      setDeadlineDate(deadlineData);
-    }
-  }, [currentDate, data.deadline]);
-
-  useEffect(() => {
-    if (currentDate && deadlineDate !== null && data.estimated_day) {
-      const daysLeft = daysDifference(deadlineDate, currentDate);
+    if (currentDate && data.deadline !== null && data.estimated_day) {
+      const daysLeft = daysDifference(new Date(data.deadline), currentDate);
       const dureeEstimee = parseFloat(data.estimated_day);
 
       if (daysLeft < dureeEstimee || daysLeft < 0) {
@@ -43,7 +29,7 @@ export default function Little_tasks({ data }) {
         setClassName("card");
       }
     }
-  }, [currentDate, deadlineDate, data.estimated_day]);
+  }, [currentDate, data.deadline, data.estimated_day]);
 
   return (
     <div className={littleClassName}>
