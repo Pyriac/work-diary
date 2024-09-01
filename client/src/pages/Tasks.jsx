@@ -4,13 +4,10 @@ import Detail_tasks from "../components/Detail_Tasks";
 
 export default function Tasks() {
   const data = useLoaderData();
-  console.info(data);
 
   const sortedData = data.sort((a, b) => {
     return new Date(a.deadline) - new Date(b.deadline);
   });
-
-  console.info(sortedData);
 
   return (
     <>

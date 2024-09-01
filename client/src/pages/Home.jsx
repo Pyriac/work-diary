@@ -5,8 +5,6 @@ import Little_tasks from "../components/Little_tasks";
 function Home() {
   const data = useLoaderData();
 
-  console.info(data);
-
   const estimated_delay = data.reduce(
     (total, task) => total + parseFloat(task.estimated_day),
     0

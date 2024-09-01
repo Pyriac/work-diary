@@ -24,17 +24,10 @@ export default function DetailTasks({ data }) {
     }
   }, [currentDate, data.deadline]);
 
-  console.info(deadlineDate);
-  console.info(currentDate);
-  console.info(data.estimated_day);
-
   useEffect(() => {
     if (currentDate && deadlineDate !== null && data.estimated_day) {
       const daysLeft = daysDifference(new Date(deadlineDate), currentDate);
       const dureeEstimee = parseFloat(data.estimated_day);
-
-      console.info(daysLeft);
-      console.info(dureeEstimee);
 
       if (daysLeft < dureeEstimee) {
         setClassName("big_card_red");
@@ -84,7 +77,7 @@ export default function DetailTasks({ data }) {
 DetailTasks.propTypes = {
   data: PropTypes.shape({
     client: PropTypes.string,
-    deadline: PropTypes.instanceOf(Date),
+    deadline: PropTypes.string,
     estimated_day: PropTypes.string,
     task: PropTypes.string,
     short_term: PropTypes.string,

@@ -6,7 +6,6 @@ export default function Little_tasks({ data }) {
   const [currentDate, setCurrentDate] = useState(null);
   const [deadlineDate, setDeadlineDate] = useState(null);
   const [littleClassName, setClassName] = useState("card");
-  console.info(data.estimated_day);
 
   const parseDate = (dateStr) => {
     const [day, month, year] = dateStr.split("/").map(Number);
@@ -67,7 +66,7 @@ export default function Little_tasks({ data }) {
 Little_tasks.propTypes = {
   data: PropTypes.shape({
     client: PropTypes.string,
-    deadline: PropTypes.instanceOf(Date),
+    deadline: PropTypes.string,
     estimated_day: PropTypes.string,
     task: PropTypes.string,
     short_term: PropTypes.string,
