@@ -35,15 +35,12 @@ export default function Little_tasks({ data }) {
     <div className={littleClassName}>
       <h3>{data.client}</h3>
       <h4>{data.task}</h4>
-      <p className="little_desc">{data.short_term}</p>
       <h4>
-        {data.estimated_day}{" "}
-        {data.estimated_day === "1" ||
-        data.estimated_day === "0.5" ||
-        data.estimated_day === "0,5"
-          ? "jour"
-          : "jours"}{" "}
-        de travail prévu
+        {new Date(data.deadline).toLocaleDateString("fr-FR", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })}
       </h4>
     </div>
   );

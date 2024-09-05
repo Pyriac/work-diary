@@ -1,12 +1,12 @@
 .card {
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin: 1rem;
+  justify-content: space-around;
   border: 1px solid aliceblue;
   color: aliceblue;
   border-radius: 1rem;
-  padding: 1rem;
   filter: blur(1px) brightness(50%);
   height: 15vh;
   overflow: hidden;
@@ -15,23 +15,22 @@
 .card:hover {
   filter: blur(0px);
 }
-.card h3 {
-  margin: 1rem;
-}
 
-.card h4 {
-  margin: 0.5rem;
+.card h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card_orange {
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin: 1rem;
+  justify-content: space-around;
   border: 1px solid rgb(240, 155, 28);
   color: rgb(240, 155, 28);
   border-radius: 1rem;
-  padding: 1rem;
   filter: blur(1px) brightness(50%);
   height: 15vh;
   overflow: hidden;
@@ -40,23 +39,16 @@
 .card_orange:hover {
   filter: blur(0px);
 }
-.card_orange h3 {
-  margin: 1rem;
-}
-
-.card_orange h4 {
-  margin: 0.5rem;
-}
 
 .card_red {
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin: 1rem;
+  justify-content: space-around;
   border: 1px solid rgb(255, 79, 79);
   color: rgb(255, 79, 79);
   border-radius: 1rem;
-  padding: 1rem;
   filter: blur(1px) brightness(50%);
   height: 15vh;
   overflow: hidden;
@@ -64,13 +56,6 @@
 
 .card_red:hover {
   filter: blur(0px);
-}
-.card_red h3 {
-  margin: 1rem;
-}
-
-.card_red h4 {
-  margin: 0.5rem;
 }
 
 .little_desc {
