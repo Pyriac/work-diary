@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #242424;
+  width: 100vw;
+  color: aliceblue;
+  padding: 5rem;
+  border-bottom: 1px solid aliceblue;
+}
+
+.header h1 {
+  margin: 2rem;
+}
+
+.header h2 {
+  margin: 1rem;
+}
+
+.header a {
+  color: rgb(127, 178, 255);
+}
+
+.grid-container {
+  padding: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 4rem;
+  background-color: #242424;
+}

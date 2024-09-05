@@ -1,0 +1,71 @@
+.client_name {
+  font-size: 2rem;
+  margin: 1rem;
+  color: aliceblue;
+}
+
+.task_name {
+  font-size: 1.5rem;
+  color: aliceblue;
+  margin: 0.8rem;
+}
+
+.fast_task {
+  color: aliceblue;
+}
+
+.underline {
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.desc {
+  font-size: 1rem;
+  color: aliceblue;
+  margin: 1.2rem;
+}
+
+.duree {
+  font-size: 1.2rem;
+  margin: 1rem;
+}
+
+.deadline {
+  font-size: 1.2rem;
+}
+
+.big_card {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 1rem;
+  border: 1px solid aliceblue;
+  color: aliceblue;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 2rem;
+}
+
+.big_card_red {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 1rem;
+  border: 1px solid rgb(255, 79, 79);
+  color: rgb(255, 79, 79);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 2rem;
+}
+
+.big_card_orange {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 1rem;
+  border: 1px solid rgb(240, 155, 28);
+  color: rgb(240, 155, 28);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 2rem;
+}
