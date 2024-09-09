@@ -1,8 +1,8 @@
-CREATE TABLE clients (
+CREATE TABLE user (
   id int unsigned PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    name VARCHAR(155) NOT NULL,
   email VARCHAR(155) not NULL,
-  password VARCHAR(255) not NULL,
-  name VARCHAR(155) NOT NULL
+  password VARCHAR(255) not NULL
 );
 
 CREATE TABLE task (
@@ -15,8 +15,8 @@ CREATE TABLE task (
   deadline DATE NOT NULL
 );
 
-INSERT INTO clients (email, password, name)
-VALUES("lololeciboulot@wanadoux.rf", "31.03", "Laurent LE Fou");
+INSERT INTO user (name, email, password)
+VALUES("Laurent LE Fou", "lololeciboulot@wanadoux.rf", "31.03");
 
 INSERT INTO task (task, client, description, short_term, estimated_day, deadline)
 VALUES ("Diagnostic de site", "GAEC Les capucines", NULL ,"Devis", 1.5, '2024/10/24'),

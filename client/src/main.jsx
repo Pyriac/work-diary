@@ -9,6 +9,7 @@ import readTask from "./services/readTask.js";
 import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
 import Tasks from "./pages/Tasks.jsx";
+import Login from "./pages/Login.jsx";
 
 import TaskDetail from "./pages/TaskDetail.jsx";
 
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
+        element: <Login />,
+      },
+      {
+        path: "/home",
         element: <Home />,
         loader: readAllTasks,
       },

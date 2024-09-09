@@ -1,9 +1,18 @@
-import { Link, useLoaderData } from "react-router-dom";
+import {
+  Link,
+  useLoaderData,
+  useNavigate,
+  useOutletContext,
+} from "react-router-dom";
 import "../assets/styles/app.css";
 import Little_tasks from "../components/Little_tasks";
 
 function Home() {
   const data = useLoaderData();
+
+  const { user } = useOutletContext();
+
+  const navigate = useNavigate();
 
   const estimated_delay = data.reduce(
     (total, task) => total + parseFloat(task.estimated_day),
@@ -24,7 +33,9 @@ function Home() {
     month: "long",
     day: "numeric",
   });
-
+  if (!user) {
+    return navigate("/");
+  }
   return (
     <>
       {" "}
