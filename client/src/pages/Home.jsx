@@ -37,6 +37,7 @@ function Home() {
         <h2>Ta prochaine disponibilité sera la {formated_date}.</h2>
       </div>
       <div className="grid-container">
+        {/* overflow-y :scroll */}
         {data.map((task) => (
           <Link to={`/task/${task.id}`} key={task.id}>
             <Little_tasks data={task} />

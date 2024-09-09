@@ -2,12 +2,14 @@
 // Import repository module
 /* ************************************************************************* */
 const TaskRepository = require("./models/TaskRepository");
+const UserRepository = require("./models/UserRepository");
 /* ************************************************************************* */
 const tables = {};
 /* ************************************************************************* */
 // Register data repositories for tables
 /* ************************************************************************* */
 tables.task = new TaskRepository();
+tables.user = new UserRepository();
 /* ************************************************************************* */
 
 module.exports = new Proxy(tables, {
