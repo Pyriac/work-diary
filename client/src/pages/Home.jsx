@@ -33,6 +33,8 @@ function Home() {
     month: "long",
     day: "numeric",
   });
+
+  console.info(user);
   if (!user) {
     return navigate("/");
   }
@@ -40,7 +42,7 @@ function Home() {
     <>
       {" "}
       <div className="header">
-        <h1>Bonjour Laurent</h1>
+        <h1>Bonjour {user.name}</h1>
         <h2>
           Tu as {data.length} missions en cours pour un total de{" "}
           {estimated_delay} jours.

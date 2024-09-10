@@ -1,3 +1,4 @@
+-- Active: 1722343119220@@127.0.0.1@3306@work_diary
 CREATE TABLE user (
   id int unsigned PRIMARY KEY AUTO_INCREMENT NOT NULL,
     name VARCHAR(155) NOT NULL,
@@ -16,7 +17,8 @@ CREATE TABLE task (
 );
 
 INSERT INTO user (name, email, password)
-VALUES("Laurent LE Fou", "lololeciboulot@wanadoux.rf", "31.03");
+VALUES("Laurent LE Fou", "lololeciboulot@wanadoux.rf", "31.03"),
+("Cyriac", "cyriac@fake.com", "fake");
 
 INSERT INTO task (task, client, description, short_term, estimated_day, deadline)
 VALUES ("Diagnostic de site", "GAEC Les capucines", NULL ,"Devis", 1.5, '2024/10/24'),

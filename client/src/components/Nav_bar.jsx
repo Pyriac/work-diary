@@ -25,7 +25,7 @@ export default function Nav_bar() {
 
   return (
     <div className="nav">
-      <Link to="/">
+      <Link to="/home">
         <p className="logo">🏡</p>
       </Link>
       <p className="nav_time">{display_date_and_time}</p>

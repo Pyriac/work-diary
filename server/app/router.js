@@ -7,6 +7,7 @@ const router = express.Router();
 const taskActions = require("./controllers/TaskActions");
 const userActions = require("./controllers/UserActions");
 const authActions = require("./controllers/AuthActions");
+const { hashPassword } = require("./services/auth");
 /* ************************************************************************* */
 
 router.get("/task", taskActions.browse);
@@ -17,8 +18,8 @@ router.delete("/task/:id", taskActions.destroy);
 
 router.get("/users", userActions.browse);
 router.get("/users/:id", userActions.read);
-router.post("users", userActions.add);
+router.post("/users", userActions.add);
 
-router.post("/login", authActions.login);
+router.post("/login", hashPassword, authActions.login);
 
 module.exports = router;
