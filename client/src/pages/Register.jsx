@@ -29,37 +29,37 @@ function Register() {
 
     try {
       // Appel à l'API pour créer un nouvel utilisateur
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/users`,
-        {
-          method: "post",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email: emailRef.current.value,
-            name: nameRef.current.value,
-            password,
-          }),
-        }
-      );
+      if (password !== "" && password === confirmPassword) {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/users`,
+          {
+            method: "post",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: emailRef.current.value,
+              name: nameRef.current.value,
+              password,
+            }),
+          }
+        );
 
-      // Redirection vers la page de connexion si la création réussit
-      if (response.status === 201) {
-        navigate("/");
+        // Redirection vers la page de connexion si la création réussit
+        if (response.status === 201) {
+          navigate("/");
+        } else {
+          console.info(response);
+        }
       } else {
-        // Log des détails de la réponse en cas d'échec
-        console.info(response);
+        console.error("Champs incorrects !");
       }
     } catch (err) {
-      // Log des erreurs possibles
       console.error(err);
     }
   };
 
-  // Rendu du composant formulaire
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        {/* Champ pour l'email */}
         <label htmlFor="email">email</label>{" "}
         <input ref={emailRef} type="email" id="email" />
       </div>
@@ -68,7 +68,6 @@ function Register() {
         <input ref={nameRef} type="text" id="name" />
       </div>
       <div>
-        {/* Champ pour le mot de passe */}
         <label htmlFor="password">password</label>{" "}
         <input
           type="password"
@@ -76,11 +75,9 @@ function Register() {
           value={password}
           onChange={handlePasswordChange}
         />{" "}
-        {/* Indicateur de force du mot de passe */}
         {password.length >= 8 ? "✅" : "❌"} {`length: ${password.length} >= 8`}
       </div>
       <div>
-        {/* Champ pour la confirmation du mot de passe */}
         <label htmlFor="confirm-password">confirm password</label>{" "}
         <input
           type="password"
@@ -88,10 +85,8 @@ function Register() {
           value={confirmPassword}
           onChange={handleConfirmPasswordChange}
         />{" "}
-        {/* Indicateur de correspondance avec le mot de passe */}
         {password === confirmPassword ? "✅" : "❌"}
       </div>
-      {/* Bouton de soumission du formulaire */}
       <button type="submit">Send</button>
     </form>
   );
