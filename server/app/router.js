@@ -8,6 +8,7 @@ const taskActions = require("./controllers/TaskActions");
 const userActions = require("./controllers/UserActions");
 const authActions = require("./controllers/AuthActions");
 const { hashPassword } = require("./services/auth");
+const middleware = require("./services/middleware");
 /* ************************************************************************* */
 
 router.get("/task", taskActions.browse);
@@ -18,8 +19,8 @@ router.delete("/task/:id", taskActions.destroy);
 
 router.get("/users", userActions.browse);
 router.get("/users/:id", userActions.read);
-router.post("/users", userActions.add);
+router.post("/users", middleware.randomID, hashPassword, userActions.add);
 
-router.post("/login", hashPassword, authActions.login);
+router.post("/login", authActions.login);
 
 module.exports = router;

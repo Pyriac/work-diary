@@ -32,8 +32,6 @@ const add = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  browse,
-  read,
-  add,
-};
+const userActions = { browse, read, add };
+
+module.exports = userActions;
