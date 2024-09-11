@@ -7,7 +7,7 @@ const router = express.Router();
 const taskActions = require("./controllers/TaskActions");
 const userActions = require("./controllers/UserActions");
 const authActions = require("./controllers/AuthActions");
-const { hashPassword } = require("./services/auth");
+const auth = require("./services/auth");
 const middleware = require("./services/middleware");
 /* ************************************************************************* */
 
@@ -19,8 +19,13 @@ router.delete("/task/:id", taskActions.destroy);
 
 router.get("/users", userActions.browse);
 router.get("/users/:id", userActions.read);
-router.post("/users", middleware.randomID, hashPassword, userActions.add);
+router.post("/users", middleware.randomID, auth.hashPassword, userActions.add);
 
-router.post("/login", authActions.login);
+router.post(
+  "/login",
+  authActions.verifyPassword,
+  auth.createToken,
+  userActions.login
+);
 
 module.exports = router;

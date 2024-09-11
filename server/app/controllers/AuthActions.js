@@ -2,31 +2,35 @@ const argon2 = require("argon2");
 // Import access to database tables
 const tables = require("../../database/table");
 
-const login = async (req, res, next) => {
+const verifyPassword = async (req, res, next) => {
   try {
-    // Fetch a specific user from the database based on the provided email
-    const user = await tables.user.readByEmail(req.body.email);
+    const { email, password } = req.body;
+    const user = await tables.user.readByEmail(email);
 
-    if (user == null) {
-      res.sendStatus(422);
-      return;
+    if (!user) {
+      res.sendStatus(401);
     }
 
-    const verified = await argon2.verify(user.password, req.body.password);
-    if (verified) {
-      // Respond with the user in JSON format (but without the hashed password)
-      delete user.password;
+    req.user = {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+    };
 
-      res.json(user);
+    console.info(req.user);
+
+    const verified = await argon2.verify(user.password, password);
+
+    if (!verified) {
+      res.sendStatus(401);
     } else {
-      res.sendStatus(422);
+      next();
     }
-  } catch (err) {
-    // Pass any errors to the error-handling middleware
-    next(err);
+  } catch (error) {
+    next(error);
   }
 };
 
-module.exports = {
-  login,
-};
+const AuthActions = { verifyPassword };
+
+module.exports = AuthActions;

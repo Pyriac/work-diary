@@ -32,6 +32,19 @@ const add = async (req, res, next) => {
   }
 };
 
-const userActions = { browse, read, add };
+const login = async (req, res, next) => {
+  try {
+    res.cookie("auth", req.token).json({
+      message: "Connexion réussie",
+      id: req.user.id,
+      email: req.user.email,
+      name: req.user.name,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const userActions = { browse, read, add, login };
 
 module.exports = userActions;
