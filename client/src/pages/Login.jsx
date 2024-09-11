@@ -1,12 +1,10 @@
 import { useRef } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import myAxios from "../services/myAxios";
 
 function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
-
-  const { setUser } = useOutletContext();
 
   const navigate = useNavigate();
 
@@ -27,8 +25,6 @@ function Login() {
       );
 
       if (response.status === 200) {
-        const user = await response.data;
-        setUser(user);
         navigate("/home");
       } else {
         console.info(response);
