@@ -1,18 +1,34 @@
-import {
-  Link,
-  useLoaderData,
-  useNavigate,
-  useOutletContext,
-} from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import "../assets/styles/app.css";
 import Little_tasks from "../components/Little_tasks";
+import { useEffect, useState } from "react";
+import myAxios from "../services/myAxios";
 
 function Home() {
   const data = useLoaderData();
-
-  const { user } = useOutletContext();
-
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchAuth = async () => {
+      try {
+        const response = await myAxios.get("/api/auth-cookie", {
+          withCredentials: true,
+        });
+        setUser(response.data);
+      } catch (error) {
+        console.error(
+          "Erreur lors de la récupération des informations de connexion",
+          error
+        );
+        navigate("/");
+      }
+    };
+
+    fetchAuth();
+  }, [navigate]);
+
+  console.info(user);
 
   const estimated_delay = data.reduce(
     (total, task) => total + parseFloat(task.estimated_day),
@@ -34,7 +50,6 @@ function Home() {
     day: "numeric",
   });
 
-  console.info(user);
   if (!user) {
     return navigate("/");
   }

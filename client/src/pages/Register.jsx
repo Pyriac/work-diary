@@ -28,7 +28,6 @@ function Register() {
     event.preventDefault();
 
     try {
-      // Appel à l'API pour créer un nouvel utilisateur
       if (password !== "" && password === confirmPassword) {
         const response = await fetch(
           `${import.meta.env.VITE_API_URL}/api/users`,
@@ -42,8 +41,6 @@ function Register() {
             }),
           }
         );
-
-        // Redirection vers la page de connexion si la création réussit
         if (response.status === 201) {
           navigate("/");
         } else {

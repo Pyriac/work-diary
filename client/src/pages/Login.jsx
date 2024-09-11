@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import myAxios from "../services/myAxios";
 
 function Login() {
   const emailRef = useRef();
@@ -13,22 +14,21 @@ function Login() {
     event.preventDefault();
 
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/login`,
+      const response = await myAxios.post(
+        `/api/login`,
         {
-          method: "post",
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+        },
+        {
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email: emailRef.current.value,
-            password: passwordRef.current.value,
-          }),
+          withCredentials: true,
         }
       );
+
       if (response.status === 200) {
-        const user = await response.json();
-
+        const user = await response.data;
         setUser(user);
-
         navigate("/home");
       } else {
         console.info(response);

@@ -28,4 +28,6 @@ router.post(
   userActions.login
 );
 
+router.get("/auth-cookie", auth.cookieUser);
+
 module.exports = router;

@@ -51,6 +51,17 @@ const verifyToken = async (req, res, next) => {
   }
 };
 
-const auth = { hashPassword, createToken, verifyToken };
+const cookieUser = async (req, res, next) => {
+  try {
+    const { auth } = req.cookies;
+
+    const response = await jwt.verify(auth, process.env.APP_SECRET);
+    res.json(response);
+  } catch (error) {
+    res.status(401).json({ message: "Token invalide" });
+  }
+};
+
+const auth = { hashPassword, createToken, verifyToken, cookieUser };
 
 module.exports = auth;
