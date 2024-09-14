@@ -19,7 +19,13 @@ router.delete("/task/:id", taskActions.destroy);
 
 router.get("/users", userActions.browse);
 router.get("/users/:id", userActions.read);
-router.post("/users", middleware.randomID, auth.hashPassword, userActions.add);
+router.post(
+  "/users",
+  middleware.verifyRegister,
+  middleware.randomID,
+  auth.hashPassword,
+  userActions.add
+);
 
 router.post(
   "/login",

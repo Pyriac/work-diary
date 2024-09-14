@@ -1,13 +1,14 @@
+import { useEffect, useContext } from "react";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import "../assets/styles/app.css";
 import Little_tasks from "../components/Little_tasks";
-import { useEffect, useState } from "react";
 import myAxios from "../services/myAxios";
+import { UserContext } from "../contexts/userContext";
 
 function Home() {
   const data = useLoaderData();
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  const { CurrentUser, setCurrentUser } = useContext(UserContext);
 
   useEffect(() => {
     const fetchAuth = async () => {
@@ -15,7 +16,7 @@ function Home() {
         const response = await myAxios.get("/api/auth-cookie", {
           withCredentials: true,
         });
-        setUser(response.data);
+        setCurrentUser(response.data);
       } catch (error) {
         console.error(
           "Erreur lors de la récupération des informations de connexion",
@@ -26,9 +27,7 @@ function Home() {
     };
 
     fetchAuth();
-  }, [navigate]);
-
-  console.info(user);
+  }, [navigate, setCurrentUser]);
 
   const estimated_delay = data.reduce(
     (total, task) => total + parseFloat(task.estimated_day),
@@ -50,14 +49,14 @@ function Home() {
     day: "numeric",
   });
 
-  if (!user) {
+  if (!CurrentUser) {
     return navigate("/");
   }
   return (
     <>
       {" "}
       <div className="header">
-        <h1>Bonjour {user.name}</h1>
+        <h1>Bonjour {CurrentUser.name}</h1>
         <h2>
           Tu as {data.length} missions en cours pour un total de{" "}
           {estimated_delay} jours.
