@@ -26,12 +26,15 @@ export default function Nav_bar() {
   return (
     <div className="nav">
       <Link to="/home">
-        <p className="logo">🏡</p>
+        <p>Accueil</p>
       </Link>
+      <p>Profil</p>
       <p className="nav_time">⌚️{display_date_and_time}</p>
-      <Link to="/add/task">➕</Link>
+      <Link to="/add/task">
+        <p>Nouvelle Tâche</p>
+      </Link>
       <Link to="/tasks">
-        <p className="logo">📄</p>
+        <p>Tâches</p>
       </Link>
     </div>
   );

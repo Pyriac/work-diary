@@ -9,6 +9,7 @@ function Home() {
   const data = useLoaderData();
   const navigate = useNavigate();
   const { CurrentUser, setCurrentUser } = useContext(UserContext);
+  console.info(data);
 
   useEffect(() => {
     const fetchAuth = async () => {
@@ -28,6 +29,9 @@ function Home() {
 
     fetchAuth();
   }, [navigate, setCurrentUser]);
+
+  const estimateToDo = data.filter((task) => task.estimation === "to_do");
+  console.info(estimateToDo);
 
   const estimated_delay = data.reduce(
     (total, task) => total + parseFloat(task.estimated_day),
@@ -63,14 +67,25 @@ function Home() {
         </h2>
         <h2>Ta prochaine disponibilité sera la {formated_date}.</h2>
       </div>
-      <div className="grid-container">
-        {/* overflow-y :scroll */}
-        {data.map((task) => (
-          <Link to={`/task/${task.id}`} key={task.id}>
-            <Little_tasks data={task} />
-          </Link>
-        ))}
-      </div>
+      <section className="home_section">
+        <div className="grid-container">
+          {/* overflow-y :scroll */}
+          <h3 className="Subdiv_title">Tâches urgentes</h3>
+          {data.map((task) => (
+            <Link to={`/task/${task.id}`} key={task.id}>
+              <Little_tasks data={task} />
+            </Link>
+          ))}
+        </div>
+        <div className="estimateToDo">
+          <h3 className="Subdiv_title">Devis à faire</h3>
+          {estimateToDo.map((task) => (
+            <Link to={`/task/${task.id}`} key={task.id}>
+              <Little_tasks data={task} />
+            </Link>
+          ))}
+        </div>
+      </section>
     </>
   );
 }

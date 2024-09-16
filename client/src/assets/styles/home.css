@@ -18,3 +18,42 @@
   gap: 1rem;
   background-color: #242424;
 }
+
+.home_section {
+  display: flex;
+  width: 100vw;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.estimateToDo {
+  width: 40vw;
+  overflow-y: scroll;
+  height: 60vh;
+}
+
+.Subdiv_title {
+  text-align: center;
+  padding: 1rem;
+  font-size: 1.5rem;
+  color: aliceblue;
+  grid-column: 1 / -1;
+}
+
+.estimateToDo::-webkit-scrollbar {
+  width: 8px; /* Largeur de la barre de défilement */
+}
+
+.estimateToDo::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Couleur de l'arrière-plan */
+}
+
+.estimateToDo::-webkit-scrollbar-thumb {
+  background-color: #888; /* Couleur de la barre */
+  border-radius: 10px;
+  border: 2px solid #f1f1f1; /* Espace autour de la barre */
+}
+
+.estimateToDo::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Couleur lors du survol */
+}
