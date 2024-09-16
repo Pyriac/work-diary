@@ -14,6 +14,7 @@ import Tasks from "./pages/Tasks.jsx";
 import Login from "./pages/Login.jsx";
 import TaskDetail from "./pages/TaskDetail.jsx";
 import Register from "./pages/Register.jsx";
+import AddTask from "./pages/AddTask.jsx";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
         path: "/task/:id",
         element: <TaskDetail />,
         loader: readTask,
+      },
+      {
+        path: "/add/task",
+        element: <AddTask />,
       },
       {
         path: "/register",

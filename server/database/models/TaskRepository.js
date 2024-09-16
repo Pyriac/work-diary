@@ -5,8 +5,11 @@ class TaskRepository extends AbstractRepository {
     super({ table: "task" });
   }
 
-  async readAll() {
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+  async readAll(userID) {
+    const [rows] = await this.database.query(
+      `select * from ${this.table} where user_id = ?`,
+      [userID]
+    );
 
     return rows;
   }

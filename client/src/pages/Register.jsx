@@ -21,25 +21,23 @@ function Register() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      if (password !== "" && password === confirmPassword) {
-        const response = await myAxios.post(
-          `/api/users`,
-          {
-            email: emailRef.current.value,
-            name: nameRef.current.value,
-            password,
-            confirmPassword,
-          },
-          {
-            headers: { "Content-Type": "application/json" },
-          }
-        );
-
-        if (response.status === 201) {
-          navigate("/");
-        } else {
-          console.info(response);
+      const response = await myAxios.post(
+        `/api/users`,
+        {
+          email: emailRef.current.value,
+          name: nameRef.current.value,
+          password,
+          confirmPassword,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
         }
+      );
+
+      if (response.status === 201) {
+        navigate("/");
+      } else {
+        console.info(response);
       }
     } catch (err) {
       console.error(err);
