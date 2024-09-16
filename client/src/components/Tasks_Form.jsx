@@ -5,19 +5,20 @@ function TasksForm() {
       <input type="text" name="task" />
       <label htmlFor="client">Client</label>
       <input type="text" name="client" />
-      <select name="devis" id="">
-        Devis
+      <label htmlFor="estimation"></label>
+      <select name="estimation" id="estimation">
+        <option value="">--Choisir une option--</option>
+        <option value="to_do">A faire</option>
+        <option value="send">Envoyé</option>
+        <option value="sign">Signé</option>
       </select>
-      <option value=""></option>
-      <option value=""></option>
-      <option value=""></option>
       <label htmlFor="description">Commentaires</label>
-      <input type="text" name="description" />
-      <label htmlFor="short_term"></label>
+      <textarea type="text" name="description" />
+      <label htmlFor="short_term">A faire à court terme</label>
       <input type="text" name="short-term" />
-      <label htmlFor="estimated_day"></label>
-      <input type="text" name="estimated_day" />
-      <label htmlFor="deadline"></label>
+      <label htmlFor="estimated_day">Durée estimée</label>
+      <input type="number" name="estimated_day" step="0.5" />
+      <label htmlFor="deadline">Date limite</label>
       <input type="date" name="deadline" />
     </>
   );

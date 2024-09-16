@@ -23,16 +23,18 @@ class TaskRepository extends AbstractRepository {
     return rows[0];
   }
 
-  async create(task) {
+  async create(task, userID) {
     const [result] = await this.database.query(
-      `insert into ${this.table} (task, client, description, short_term, estimated_day, deadline) values (?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (task, client, estimation, description, short_term, estimated_day, deadline, user_id) values (?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         task.task,
         task.client,
+        task.estimation,
         task.description,
         task.short_term,
         task.estimated_day,
         task.deadline,
+        userID,
       ]
     );
     return result.insertId;
@@ -48,11 +50,12 @@ class TaskRepository extends AbstractRepository {
 
   async update(task) {
     const [result] = await this.database.query(
-      `update ${this.table} set task = ?, client = ?, description = ?, short_term = ?, estimated_day = ?, deadline = ? where id = ?`,
+      `update ${this.table} set task = ?, client = ?, estimation = ?, description = ?, short_term = ?, estimated_day = ?, deadline = ? where id = ?`,
 
       [
         task.task,
         task.client,
+        task.estimation,
         task.description,
         task.short_term,
         task.estimated_day,

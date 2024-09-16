@@ -28,7 +28,8 @@ export default function Nav_bar() {
       <Link to="/home">
         <p className="logo">🏡</p>
       </Link>
-      <p className="nav_time">{display_date_and_time}</p>
+      <p className="nav_time">⌚️{display_date_and_time}</p>
+      <Link to="/add/task">➕</Link>
       <Link to="/tasks">
         <p className="logo">📄</p>
       </Link>

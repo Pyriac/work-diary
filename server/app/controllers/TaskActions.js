@@ -40,9 +40,12 @@ const edit = async (req, res, next) => {
 
 const add = async (req, res, next) => {
   const task = req.body;
+  const auth = req.cookies.auth;
+  const decodeToken = await jwt.decode(auth);
+  const userID = decodeToken.id;
 
   try {
-    const insertId = await tables.task.create(task);
+    const insertId = await tables.task.create(task, userID);
     res.status(201).json({ insertId });
   } catch (error) {
     next(error);

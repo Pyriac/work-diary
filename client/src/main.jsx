@@ -7,6 +7,7 @@ import UserProvider from "./contexts/userContext.jsx";
 
 import readAllTasks from "./services/readAllTasks.js";
 import readTask from "./services/readTask.js";
+import AddTasks from "./services/addTasks.js";
 
 import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
@@ -43,6 +44,7 @@ const router = createBrowserRouter([
       {
         path: "/add/task",
         element: <AddTask />,
+        action: AddTasks,
       },
       {
         path: "/register",
