@@ -13,13 +13,13 @@ CREATE TABLE task (
   description VARCHAR(855),
   short_term VARCHAR(255),
   estimated_day DECIMAL(4, 1) NOT NULL,
-  deadline DATE NOT NULL
+  deadline DATE NOT NULL,
+  user_id VARCHAR(55) not NULL
 );
 
 INSERT INTO user (id, name, email, password)
-VALUES("lolilol", "Laurent LE Fou", "lololeciboulot@wanadoux.rf", "31.03"),
-("beast","Cyriac", "cyriac@fake.com", "fake");
+VALUES('f9b6b242-235a-4c8d-9700-72264dce24aa',"Cyriac", "cyriac@fake.com", "$argon2id$v=19$m=19456,t=2,p=1$/gpTMEEy5/ShTwvK4bcLtA$VVY4+zDbVyUXErywJDTZ/fcDuPnJFmdm/X4z1C90adc");
 
-INSERT INTO task (task, client, description, short_term, estimated_day, deadline)
-VALUES ("Diagnostic de site", "GAEC Les capucines", NULL ,"Devis", 1.5, '2024/10/24'),
-("PC", "CONDEVAUX Loïc", "A prévoir avec Paola", "Retrouver coordonnées client", 1.5, '2024/12/31');
+INSERT INTO task (task, client, description, short_term, estimated_day, deadline, user_id)
+VALUES ("Diagnostic de site", "GAEC Les capucines", NULL ,"Devis", 1.5, '2024/10/24',"f9b6b242-235a-4c8d-9700-72264dce24aa"),
+("PC", "CONDEVAUX Loïc", "A prévoir avec Paola", "Retrouver coordonnées client", 1.5, '2024/12/31',"f9b6b242-235a-4c8d-9700-72264dce24aa");

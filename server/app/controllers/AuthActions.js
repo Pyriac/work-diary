@@ -17,8 +17,6 @@ const verifyPassword = async (req, res, next) => {
       name: user.name,
     };
 
-    console.info(req.user);
-
     const verified = await argon2.verify(user.password, password);
 
     if (!verified) {
