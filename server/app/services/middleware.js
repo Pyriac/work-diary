@@ -35,6 +35,36 @@ const verifyRegister = (req, res, next) => {
   }
 };
 
-const middleware = { randomID, verifyRegister };
+const verifyAddTask = (req, res, next) => {
+  const schema = Joi.object({
+    task: Joi.string().required().messages({
+      "string.empty": "Merci de saisir un nom pour votre Tâche",
+    }),
+    client: Joi.string().required().messages({
+      "string.empty": "Merci de saisir un nom pour votre Client",
+    }),
+    estimation: Joi.string().required().messages({
+      "string.empty": "Merci de saisir une option pour votre devis",
+    }),
+    description: Joi.string().allow(null, ""),
+    short_term: Joi.string().allow(null, ""),
+    estimated_day: Joi.number().required().messages({
+      "number.empty":
+        "Pour le bon fonctionnement de l'agenda, merci de spécifier la durée estimée",
+    }),
+    deadline: Joi.date().required().messages({
+      "date.empty": "Merci de spécifier une date limite pour votre tache",
+    }),
+  });
+  const result = schema.validate(req.body);
+
+  if (result.error) {
+    res.status(400).send(result.error.message);
+  } else {
+    next();
+  }
+};
+
+const middleware = { randomID, verifyRegister, verifyAddTask };
 
 module.exports = middleware;

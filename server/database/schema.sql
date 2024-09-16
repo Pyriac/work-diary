@@ -7,7 +7,7 @@ CREATE TABLE user (
 );
 
 CREATE TABLE task (
-  id int unsigned PRIMARY KEY AUTO_INCREMENT NOT NULL,
+ id VARCHAR(155) PRIMARY KEY NOT NULL,
   task VARCHAR(255) not NULL,
   client VARCHAR(255) not NULL,
   estimation VARCHAR(55) NOT NULL,
@@ -19,8 +19,9 @@ CREATE TABLE task (
 );
 
 INSERT INTO user (id, name, email, password)
-VALUES('f9b6b242-235a-4c8d-9700-72264dce24aa',"Cyriac", "cyriac@fake.com", "$argon2id$v=19$m=19456,t=2,p=1$/gpTMEEy5/ShTwvK4bcLtA$VVY4+zDbVyUXErywJDTZ/fcDuPnJFmdm/X4z1C90adc");
+VALUES('f9b6b242-235a-4c8d-9700-72264dce24aa',"Cyriac", "cyriac@fake.com", "$argon2id$v=19$m=19456,t=2,p=1$bq30KlpiMDDA0w8v9zrWSQ$C1qsiru2nm+Ww0ZPFku/oNC1uFxLkzBeoxIBtLPm7wM");
+-- Milo44@bg
 
-INSERT INTO task (task, client, estimation, description, short_term, estimated_day, deadline, user_id)
-VALUES ("Diagnostic de site", "GAEC Les capucines", "to_do" , NULL ,"Devis", 1.5, '2024/10/24',"f9b6b242-235a-4c8d-9700-72264dce24aa"),
-("PC", "CONDEVAUX Loïc", "send" ,"A prévoir avec Paola", "Retrouver coordonnées client", 1.5, '2024/12/31',"f9b6b242-235a-4c8d-9700-72264dce24aa");
+INSERT INTO task (id, task, client, estimation, description, short_term, estimated_day, deadline, user_id)
+VALUES ("f9b6b242-235a-4c8d-9700-72264","Diagnostic de site", "GAEC Les capucines", "to_do" , NULL ,"Devis", 1.5, '2024/10/24',"f9b6b242-235a-4c8d-9700-72264dce24aa"),
+("f9b6b242-235a-4c8d-970012-722642","PC", "CONDEVAUX Loïc", "send" ,"A prévoir avec Paola", "Retrouver coordonnées client", 1.5, '2024/12/31',"f9b6b242-235a-4c8d-9700-72264dce24aa");

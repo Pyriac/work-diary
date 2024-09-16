@@ -41,7 +41,7 @@ const verifyToken = async (req, res, next) => {
   try {
     const { auth } = req.cookies;
 
-    const result = await jwt.verify(auth, process.env.APP_SECRET);
+    await jwt.verify(auth, process.env.APP_SECRET);
     next();
   } catch (error) {
     next(error);

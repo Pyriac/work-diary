@@ -38,17 +38,33 @@ const edit = async (req, res, next) => {
   }
 };
 
-const add = async (req, res, next) => {
+const add = async (req, res) => {
   const task = req.body;
   const auth = req.cookies.auth;
-  const decodeToken = await jwt.decode(auth);
-  const userID = decodeToken.id;
-
   try {
+    const decodeToken = await jwt.decode(auth, process.env.APP_SECRET);
+    const userID = decodeToken.id;
     const insertId = await tables.task.create(task, userID);
     res.status(201).json({ insertId });
   } catch (error) {
-    next(error);
+    if (error instanceof jwt.JsonWebTokenError) {
+      return res.status(403).json({
+        message:
+          "Jeton invalide ou APP_SECRET incorrect, veuillez vous reconnecter",
+      });
+    } else if (error instanceof jwt.TokenExpiredError) {
+      return res.status(403).json({
+        message:
+          "Vous êtes connectés depuis trop longtemps, veuillez vous reconnecter",
+      });
+    } else if (error instanceof jwt.NotBeforeError) {
+      return res
+        .status(403)
+        .json({ message: "Le jeton n'est pas encore valide" });
+    }
+    return res
+      .status(500)
+      .json({ message: "Erreur serveur", error: error.message });
   }
 };
 

@@ -14,7 +14,13 @@ const middleware = require("./services/middleware");
 router.get("/task", taskActions.browse);
 router.get("/task/:id", taskActions.read);
 router.put("/task/:id", taskActions.edit);
-router.post("/task", taskActions.add);
+router.post(
+  "/task",
+  auth.verifyToken,
+  middleware.verifyAddTask,
+  middleware.randomID,
+  taskActions.add
+);
 router.delete("/task/:id", taskActions.destroy);
 
 router.get("/users", userActions.browse);

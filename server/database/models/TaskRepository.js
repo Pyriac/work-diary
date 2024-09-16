@@ -25,8 +25,9 @@ class TaskRepository extends AbstractRepository {
 
   async create(task, userID) {
     const [result] = await this.database.query(
-      `insert into ${this.table} (task, client, estimation, description, short_term, estimated_day, deadline, user_id) values (?, ?, ?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (id, task, client, estimation, description, short_term, estimated_day, deadline, user_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
+        task.id,
         task.task,
         task.client,
         task.estimation,
