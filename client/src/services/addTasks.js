@@ -1,25 +1,36 @@
+import { json, redirect } from "react-router-dom";
 import myAxios from "./myAxios";
 
 const AddTasks = async ({ request }) => {
   const formData = await request.formData();
   switch (request.method.toLowerCase()) {
     case "post": {
-      await myAxios.post(
-        "/api/task",
-        {
-          task: formData.get("task"),
-          client: formData.get("client"),
-          estimation: formData.get("estimation"),
-          description: formData.get("description"),
-          short_term: formData.get("short_term"),
-          estimated_day: formData.get("estimated_day"),
-          deadline: formData.get("deadline"),
-        },
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
+      try {
+        const response = await myAxios.post(
+          "/api/task",
+          {
+            task: formData.get("task"),
+            client: formData.get("client"),
+            estimation: formData.get("estimation"),
+            description: formData.get("description"),
+            short_term: formData.get("short_term"),
+            estimated_day: formData.get("estimated_day"),
+            deadline: formData.get("deadline"),
+          },
+          {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+          }
+        );
+        if (response.status === 201) {
+          console.info(response);
+          return redirect("/");
         }
-      );
+      } catch (error) {
+        console.error(error);
+        return json({ message: error.response.data }, { status: 400 });
+      }
+
       return new Response("Tache créée avec succès", { status: 201 });
     }
 
