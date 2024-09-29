@@ -1,4 +1,4 @@
-import { json, redirect } from "react-router-dom";
+import { json } from "react-router-dom";
 import myAxios from "./myAxios";
 
 const AddTasks = async ({ request }) => {
@@ -24,7 +24,7 @@ const AddTasks = async ({ request }) => {
         );
         if (response.status === 201) {
           console.info(response);
-          return redirect("/");
+          return json({ message: "Tache créée avec succès" }, { status: 201 });
         }
       } catch (error) {
         console.error(error);

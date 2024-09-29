@@ -49,6 +49,8 @@ const verifyAddTask = (req, res, next) => {
     description: Joi.string().allow(null, ""),
     short_term: Joi.string().allow(null, ""),
     estimated_day: Joi.number().required().messages({
+      "number.base":
+        "Vous devez saisir une valeur numérique pour la durée estimée",
       "number.empty":
         "Pour le bon fonctionnement de l'agenda, merci de spécifier la durée estimée",
     }),

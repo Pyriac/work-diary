@@ -1,14 +1,22 @@
+import { useState, useEffect } from "react";
 import { Form, useActionData } from "react-router-dom";
 import TasksForm from "../components/Tasks_Form";
 
 function AddTask() {
+  const [addStatus, setAddStatus] = useState("");
   const actionData = useActionData();
-  const errormessage = actionData.message;
+  console.info(actionData);
+  useEffect(() => {
+    if (actionData) {
+      setAddStatus(actionData.message);
+    }
+  }, [actionData]);
+
   return (
     <Form method="post">
       <TasksForm />
       <button type="submit">Envoyer</button>
-      <p>{errormessage || ""}</p>
+      <p>{addStatus}</p>
     </Form>
   );
 }
