@@ -9,6 +9,15 @@ const browse = async (req, res, next) => {
   }
 };
 
+const readByCookie = async (req, res, next) => {
+  try {
+    const user = await tables.user.read(req.body.id);
+    user ? res.json(user) : res.sendStatus(404);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const read = async (req, res, next) => {
   try {
     const user = await tables.user.read(req.params.id);
@@ -45,6 +54,6 @@ const login = async (req, res, next) => {
   }
 };
 
-const userActions = { browse, read, add, login };
+const userActions = { browse, read, add, login, readByCookie };
 
 module.exports = userActions;

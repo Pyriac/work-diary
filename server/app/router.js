@@ -32,7 +32,11 @@ router.post(
   auth.hashPassword,
   userActions.add
 );
-router.get("/user/profile", userActions.browse);
+router.get(
+  "/user/profile",
+  middleware.getCookieValue,
+  userActions.readByCookie
+);
 
 router.post(
   "/login",

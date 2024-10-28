@@ -1,5 +1,6 @@
 const { v4: uuidv4 } = require("uuid");
 const Joi = require("joi");
+const jwt = require("jsonwebtoken");
 
 const randomID = (req, res, next) => {
   req.body.id = uuidv4();
@@ -67,6 +68,15 @@ const verifyAddTask = (req, res, next) => {
   }
 };
 
-const middleware = { randomID, verifyRegister, verifyAddTask };
+const getCookieValue = async (req, res, next) => {
+  const { auth } = req.cookies;
+  const user = await jwt.verify(auth, process.env.APP_SECRET);
+  req.body = user;
+  user
+    ? next()
+    : res.sendStatus(500).json({ message: "Vous n'êtes pas connectés" });
+};
+
+const middleware = { randomID, verifyRegister, verifyAddTask, getCookieValue };
 
 module.exports = middleware;
