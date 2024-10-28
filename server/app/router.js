@@ -32,6 +32,7 @@ router.post(
   auth.hashPassword,
   userActions.add
 );
+router.get("/user/profile", userActions.browse);
 
 router.post(
   "/login",

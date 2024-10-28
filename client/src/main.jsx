@@ -8,6 +8,7 @@ import UserProvider from "./contexts/userContext.jsx";
 import readAllTasks from "./services/readAllTasks.js";
 import readTask from "./services/readTask.js";
 import AddTasks from "./services/addTasks.js";
+import profilServices from "./services/ProfilServices.js";
 
 import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
@@ -16,6 +17,7 @@ import Login from "./pages/Login.jsx";
 import TaskDetail from "./pages/TaskDetail.jsx";
 import Register from "./pages/Register.jsx";
 import AddTask from "./pages/AddTask.jsx";
+import Profil from "./pages/Profil.jsx";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,11 @@ const router = createBrowserRouter([
         element: <Home />,
         loader: readAllTasks,
         errorElement: <Login />,
+      },
+      {
+        path: "/profil",
+        element: <Profil />,
+        loader: profilServices.readProfil,
       },
       {
         path: "/tasks",
