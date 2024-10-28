@@ -30,6 +30,7 @@ const router = createBrowserRouter([
         path: "/home",
         element: <Home />,
         loader: readAllTasks,
+        errorElement: <Login />,
       },
       {
         path: "/tasks",
