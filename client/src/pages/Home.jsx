@@ -1,5 +1,5 @@
 import { useEffect, useContext } from "react";
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import "../assets/styles/app.css";
 import Little_tasks from "../components/Little_tasks";
 import myAxios from "../services/myAxios";
@@ -7,7 +7,6 @@ import { UserContext } from "../contexts/userContext";
 
 function Home() {
   const data = useLoaderData();
-  const navigate = useNavigate();
   const { CurrentUser, setCurrentUser } = useContext(UserContext);
   console.info(data);
 
@@ -23,12 +22,11 @@ function Home() {
           "Erreur lors de la récupération des informations de connexion",
           error
         );
-        navigate("/");
       }
     };
 
     fetchAuth();
-  }, [navigate, setCurrentUser]);
+  }, [setCurrentUser]);
 
   const estimateToDo = data.filter((task) => task.estimation === "to_do");
   console.info(estimateToDo);
@@ -53,9 +51,6 @@ function Home() {
     day: "numeric",
   });
 
-  if (!CurrentUser) {
-    return navigate("/");
-  }
   return (
     <>
       {" "}
