@@ -39,7 +39,10 @@ function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <section className="login">
+      <h2>Bienvenue</h2>
+      <h3>Connectez-vous pour accèder à votre espace</h3>
+    <form onSubmit={handleSubmit} >
       <div>
         <label htmlFor="email">email</label>{" "}
         <input ref={emailRef} type="email" id="email" />
@@ -48,8 +51,9 @@ function Login() {
         <label htmlFor="password">password</label>{" "}
         <input type="password" id="password" ref={passwordRef} />
       </div>
-      <button type="submit">Send</button>
+      <button type="submit">Connexion</button>
     </form>
+    </section>
   );
 }
 

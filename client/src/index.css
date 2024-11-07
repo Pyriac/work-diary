@@ -84,6 +84,16 @@ h2 {
   color: aliceblue;
 }
 
+label {
+  color: aliceblue;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 1.2rem;
+}
+input{
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

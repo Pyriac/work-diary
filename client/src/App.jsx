@@ -7,6 +7,7 @@ import "./assets/styles/home.css";
 import "./assets/styles/big-card.css";
 import "./assets/styles/little-card.css";
 import "./assets/styles/task-detail.css";
+import "./assets/styles/login.css"
 
 function App() {
   return (
