@@ -56,7 +56,7 @@ const verifyAddTask = (req, res, next) => {
         "Pour le bon fonctionnement de l'agenda, merci de spécifier la durée estimée",
     }),
     deadline: Joi.date().required().messages({
-      "date.empty": "Merci de spécifier une date limite pour votre tache",
+     "date.base":"Merci de spécifier une date limite pour votre tache"
     }),
   });
   const result = schema.validate(req.body);

@@ -8,6 +8,7 @@ import "./assets/styles/big-card.css";
 import "./assets/styles/little-card.css";
 import "./assets/styles/task-detail.css";
 import "./assets/styles/login.css"
+import "./assets/styles/taskForm.css"
 
 function App() {
   return (

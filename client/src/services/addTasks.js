@@ -23,12 +23,11 @@ const AddTasks = async ({ request }) => {
           }
         );
         if (response.status === 201) {
-          console.info(response);
-          return json({ message: "Tache créée avec succès" }, { status: 201 });
+          return json({ message: "Tache ajoutée avec succès 🎉", status:"success" }, { status: 201 });
         }
       } catch (error) {
         console.error(error);
-        return json({ message: error.response.data }, { status: 400 });
+        return json({ message: error.response.data, status:"failure" }, { status: 400 });
       }
 
       return new Response("Tache créée avec succès", { status: 201 });

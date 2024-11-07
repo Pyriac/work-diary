@@ -45,7 +45,7 @@ const add = async (req, res) => {
     const decodeToken = await jwt.decode(auth, process.env.APP_SECRET);
     const userID = decodeToken.id;
     const insertId = await tables.task.create(task, userID);
-    res.status(201).json({ insertId });
+    res.status(201).json({ insertId});
   } catch (error) {
     if (error instanceof jwt.JsonWebTokenError) {
       return res.status(403).json({
