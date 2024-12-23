@@ -15,7 +15,8 @@ CREATE TABLE task (
     short_term VARCHAR(255),
     estimated_day DECIMAL(4, 1) NOT NULL,
     deadline DATE NOT NULL,
-    user_id VARCHAR(55) not NULL
+    user_id VARCHAR(55) not NULL,
+    is_active BOOLEAN not NULL DEFAULT 1
 );
 
 INSERT INTO
@@ -38,7 +39,8 @@ INSERT INTO
         short_term,
         estimated_day,
         deadline,
-        user_id
+        user_id,
+        is_active
     )
 VALUES (
         "f9b6b242-235a-4c8d-9700-72264",
@@ -49,7 +51,8 @@ VALUES (
         "Devis",
         1.5,
         '2024/10/24',
-        "f9b6b242-235a-4c8d-9700-72264dce24aa"
+        "f9b6b242-235a-4c8d-9700-72264dce24aa",
+        1
     ),
     (
         "f9b6b242-235a-4c8d-970012-722642",
@@ -60,5 +63,6 @@ VALUES (
         "Retrouver coordonnées client",
         1.5,
         '2024/12/31',
-        "f9b6b242-235a-4c8d-9700-72264dce24aa"
+        "f9b6b242-235a-4c8d-9700-72264dce24aa",
+        0
     );
