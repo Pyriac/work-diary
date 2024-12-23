@@ -18,6 +18,7 @@ import TaskDetail from "./pages/TaskDetail.jsx";
 import Register from "./pages/Register.jsx";
 import AddTask from "./pages/AddTask.jsx";
 import Profil from "./pages/Profil.jsx";
+import EditTask from "./pages/EditTask.jsx";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,12 @@ const router = createBrowserRouter([
         path: "/task/:id",
         element: <TaskDetail />,
         loader: readTask,
+      },
+      {
+        path: "/edit/task/:id",
+        element: <EditTask />,
+        loader: readTask,
+        action: AddTasks,
       },
       {
         path: "/add/task",
