@@ -67,6 +67,15 @@ class TaskRepository extends AbstractRepository {
     );
     return result.affectedRows;
   }
+
+  async archive(taskId) {
+    console.info(taskId)
+    const [result] = await this.database.query(
+      `update ${this.table} set is_active = 0 where id = ?`,
+      [taskId]
+    );
+    return result.affectedRows;
+  }
 }
 
 module.exports = TaskRepository;

@@ -79,5 +79,17 @@ const destroy = async (req, res, next) => {
   }
 };
 
-const taskActions = { browse, read, edit, add, destroy };
+const archived = async (req, res, next) => {
+  const taskId = req.params.id;
+  console.info(taskId)
+  try {
+    await tables.task.archive(taskId);
+
+    res.sendStatus(200);
+  } catch (error) {
+    next(error)
+  }
+}
+
+const taskActions = { browse, read, edit, add, destroy, archived };
 module.exports = taskActions;

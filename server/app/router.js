@@ -45,6 +45,10 @@ router.post(
   userActions.login
 );
 
+router.put("/archived/:id",
+  taskActions.archived
+)
+
 router.get("/auth-cookie", auth.cookieUser);
 
 module.exports = router;

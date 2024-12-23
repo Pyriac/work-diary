@@ -1,11 +1,21 @@
 import { useEffect, useState } from "react";
-import { useLoaderData, Link } from "react-router-dom";
+import { useLoaderData, Link, Form, useActionData } from "react-router-dom";
 
 export default function TaskDetail() {
   const data = useLoaderData();
+  const response = useActionData();
+console.info(response)
+  console.info(data)
+  const [showPopup, setShowPopup] = useState(false);
+
+  // Fonction pour afficher ou masquer le pop-up
+  const togglePopup = () => setShowPopup(!showPopup);
 
   const [className, setClassName] = useState("task_detail");
   const [currentDate, setCurrentDate] = useState(null);
+  useEffect(() => {
+    setShowPopup(false)
+  }, [response])
 
   useEffect(() => {
     setCurrentDate(new Date());
@@ -73,11 +83,32 @@ export default function TaskDetail() {
           </Link>
 
         </button>
-        <button>
+        {data.is_active ?  <button onClick={togglePopup}>
 Archiver
-        </button>
+        </button> : ""}
+       
+        {showPopup && (
+        <div className="overlay">
+          <div className="popup">
+            <h3>Confirmation</h3>
+            <p>Êtes-vous sûr de vouloir archiver cette tâche ?</p>
+            <p>Cette action est irréversible</p>
+            <div className="actions">
+              <Form method="put">
+              <button type="submit" className="confirmButton">
+                Confirmer
+              </button>
+              </Form>
+              <button onClick={togglePopup} className="cancelButton">
+                Annuler
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
         </>
       )}
+      
     </div>
   );
 }

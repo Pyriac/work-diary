@@ -9,6 +9,7 @@ import readAllTasks from "./services/readAllTasks.js";
 import readTask from "./services/readTask.js";
 import AddTasks from "./services/addTasks.js";
 import profilServices from "./services/ProfilServices.js";
+import archived from "./services/archived.js"
 
 import App from "./App.jsx";
 import Home from "./pages/Home.jsx";
@@ -49,6 +50,7 @@ const router = createBrowserRouter([
         path: "/task/:id",
         element: <TaskDetail />,
         loader: readTask,
+        action: archived,
       },
       {
         path: "/edit/task/:id",
