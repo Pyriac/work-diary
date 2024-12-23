@@ -24,7 +24,7 @@ export default function Nav_bar() {
 
   return (
     <div className="nav">
-      <Link to="/home">
+      <Link to="/">
         <p>Accueil</p>
       </Link>
       <Link to="/profil">

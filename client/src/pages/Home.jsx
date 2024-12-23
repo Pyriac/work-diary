@@ -50,10 +50,8 @@ function Home() {
     month: "long",
     day: "numeric",
   });
-
-  return (
+  return CurrentUser ? (
     <>
-      {" "}
       <div className="header">
         <h1>Bonjour {CurrentUser.name}</h1>
         <h2>
@@ -64,7 +62,6 @@ function Home() {
       </div>
       <section className="home_section">
         <div className="grid-container">
-          {/* overflow-y :scroll */}
           <h3 className="Subdiv_title">Tâches urgentes</h3>
           {data.map((task) => (
             <Link to={`/task/${task.id}`} key={task.id}>
@@ -82,7 +79,14 @@ function Home() {
         </div>
       </section>
     </>
+  ) : (
+    <div>
+    <p>Votre Authentification a expiré</p>
+    <Link to={"/login"}>
+    <button>Merci de vous connecter</button></Link>
+    </div>
   );
+  
 }
 
 export default Home;

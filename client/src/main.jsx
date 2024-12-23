@@ -27,11 +27,11 @@ const router = createBrowserRouter([
 
     children: [
       {
-        path: "/",
+        path: "/login",
         element: <Login />,
       },
       {
-        path: "/home",
+        path: "/",
         element: <Home />,
         loader: readAllTasks,
         errorElement: <Login />,
