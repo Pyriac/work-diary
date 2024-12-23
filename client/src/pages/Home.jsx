@@ -28,8 +28,33 @@ function Home() {
     fetchAuth();
   }, [setCurrentUser]);
 
-  const estimateToDo = data.filter((task) => task.estimation === "to_do");
-  console.info(estimateToDo);
+  const taskToDo = data.sort((a, b) => new Date(a.deadline) - new Date(b.deadline)).filter((task) => task.estimation === "to_do");
+
+  const daysDifference = (date1, date2) => {
+    const diffTime = date1 - date2;
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Convertir en jours
+  };
+
+  const currentDate = new Date();
+
+  const priorityTask = data
+  .filter((task) => {
+    // Vérifier si les propriétés nécessaires sont présentes
+    return (
+      currentDate &&
+      task.deadline !== null &&
+      task.estimated_day !== undefined
+    );
+  })
+  .map((task) => {
+    const daysLeft = daysDifference(new Date(task.deadline), currentDate);
+    // Vérifier si la tâche est prioritaire
+    if (daysLeft - task.estimated_day < 3) {
+      return task; // Inclure dans les tâches prioritaires
+    }
+    return null; // Exclure sinon
+  })
+  .filter((task) => task !== null); // Supprimer les éléments non prioritaires
 
   const estimated_delay = data.reduce(
     (total, task) => total + parseFloat(task.estimated_day),
@@ -63,7 +88,7 @@ function Home() {
       <section className="home_section">
         <div className="grid-container">
           <h3 className="Subdiv_title">Tâches urgentes</h3>
-          {data.map((task) => (
+          {priorityTask.map((task) => (
             <Link to={`/task/${task.id}`} key={task.id}>
               <Little_tasks data={task} />
             </Link>
@@ -71,7 +96,7 @@ function Home() {
         </div>
         <div className="estimateToDo">
           <h3 className="Subdiv_title">Devis à faire</h3>
-          {estimateToDo.map((task) => (
+          {taskToDo.map((task) => (
             <Link to={`/task/${task.id}`} key={task.id}>
               <Little_tasks data={task} />
             </Link>

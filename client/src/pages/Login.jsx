@@ -28,7 +28,7 @@ function Login() {
 
       if (response.status === 200) {
         setCurrentUser(response);
-        navigate("/home");
+        navigate("/");
         console.info(response);
       } else {
         console.info(response);

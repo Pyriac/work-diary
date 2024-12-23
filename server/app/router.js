@@ -14,6 +14,7 @@ const middleware = require("./services/middleware");
 router.get("/task", taskActions.browse);
 router.get("/task/:id", taskActions.read);
 router.put("/task/:id", taskActions.edit);
+router.get("/tasks/active", taskActions.browseActive);
 router.post(
   "/task",
   auth.verifyToken,

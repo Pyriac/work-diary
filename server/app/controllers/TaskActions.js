@@ -15,6 +15,19 @@ const browse = async (req, res, next) => {
   }
 };
 
+const browseActive = async (req, res, next) => {
+  try {
+    const auth = req.cookies.auth;
+    const decodeToken = await jwt.decode(auth);
+    const userID = decodeToken.id;
+    const task = await tables.task.readActive(userID);
+
+    res.json(task);
+  } catch (err) {
+    next(err);
+  }
+}
+
 const read = async (req, res, next) => {
   try {
     const task = await tables.task.read(req.params.id);
@@ -27,6 +40,7 @@ const read = async (req, res, next) => {
     next(error);
   }
 };
+
 
 const edit = async (req, res, next) => {
   console.info(req.params.id)
@@ -91,5 +105,5 @@ const archived = async (req, res, next) => {
   }
 }
 
-const taskActions = { browse, read, edit, add, destroy, archived };
+const taskActions = { browse, read, edit, add, destroy, archived, browseActive };
 module.exports = taskActions;

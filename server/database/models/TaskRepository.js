@@ -14,6 +14,15 @@ class TaskRepository extends AbstractRepository {
     return rows;
   }
 
+  async readActive(userID) {
+    const [rows] = await this.database.query(
+      `select * from ${this.table} where user_id = ? and is_active = 1`,
+      [userID]
+    );
+
+    return rows;
+  }
+
   async read(id) {
     const [rows] = await this.database.query(
       `select * from ${this.table} where id = ?`,
