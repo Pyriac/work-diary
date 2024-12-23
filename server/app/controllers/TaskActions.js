@@ -29,10 +29,11 @@ const read = async (req, res, next) => {
 };
 
 const edit = async (req, res, next) => {
+  console.info(req.params.id)
   try {
-    const task = { ...req.body, id: Number(req.params.id) };
+    const task = { ...req.body, id: req.params.id };
     await tables.task.update(task);
-    res.sendStatus(204);
+    res.sendStatus(200);
   } catch (err) {
     next(err);
   }

@@ -50,6 +50,7 @@ class TaskRepository extends AbstractRepository {
   }
 
   async update(task) {
+    console.info(task)
     const [result] = await this.database.query(
       `update ${this.table} set task = ?, client = ?, estimation = ?, description = ?, short_term = ?, estimated_day = ?, deadline = ? where id = ?`,
 
