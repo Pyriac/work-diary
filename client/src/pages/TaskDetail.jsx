@@ -36,6 +36,7 @@ export default function TaskDetail() {
       {!data.client ? (
         <p>Loading...</p>
       ) : (
+        <>
         <div className={className}>
           <h3 className="client_name">{data.client}</h3>
           <h4 className="task_name">{data.task}</h4>
@@ -66,6 +67,13 @@ export default function TaskDetail() {
             </strong>
           </p>
         </div>
+        <button>
+Mettre à jour
+        </button>
+        <button>
+Archiver
+        </button>
+        </>
       )}
     </div>
   );

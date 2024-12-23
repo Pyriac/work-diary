@@ -60,6 +60,7 @@ h2 {
 
 .all_tasks {
   width: 50vw;
+  margin: 0 auto;
 }
 
 .nav {

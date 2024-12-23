@@ -15,10 +15,10 @@ function EditTask() {
   }, [actionData]);
   return ( 
   <Form method="put" className="task">
-  <h2>Un nouveau dossier ? Ajoute-le ici 👇</h2>
+  <h2>Des nouvelles ? Modifie ce que tu veux ✏️</h2>
   <p className={addClass}>{addStatus}</p>
   <TasksForm />
-  <button type="submit" className="taskSubmit">Ajouter</button>
+  <button type="submit" className="taskSubmit">Modifier</button>
 
 </Form>
 );
