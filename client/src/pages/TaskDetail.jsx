@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 
 export default function TaskDetail() {
   const data = useLoaderData();
@@ -68,7 +68,10 @@ export default function TaskDetail() {
           </p>
         </div>
         <button>
-Mettre à jour
+          <Link to={`/edit/task/${data.id}`}>
+          Mettre à jour
+          </Link>
+
         </button>
         <button>
 Archiver
